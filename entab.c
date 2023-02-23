@@ -16,10 +16,13 @@ void entab(char line[MAXSIZE],char entabbedline[MAXSIZE],int len){
       ++i;
     }
     if(consecutive_spaces >= TABSTOPS){
-      entabbedline[j] = '\t';
+      j -= consecutive_spaces;
+      printf("hello I am being executed\n");
+      entabbedline[j] = 'l';
       ++j;
     }
     else{
+      consecutive_spaces = 0;
       entabbedline[j] = line[i];
       ++j; ++i;
     }

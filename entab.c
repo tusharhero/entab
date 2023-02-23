@@ -8,25 +8,22 @@
 #define TABSTOPS 8
 
 void entab(char line[MAXSIZE],char entabbedline[MAXSIZE],int len){
-  int i,j; i = j = 0;
-  int consecutive_spaces = 0;
+  int i,j,k; i = j = k = 0;
+  int spaces = 0;
   while(i < len && j < len){
-    if(line[i] == ' '){// count the number of consecutive spaces
-      consecutive_spaces++;
-      ++i;
+    for(k = j;k < len && k < TABSTOPS;k++){
+      if (line[k] == ' '){
+        spaces++;
+      }
     }
-    if(consecutive_spaces >= TABSTOPS){//if consecutive spaces are greater than the number of TABSTOPS then replace with tab
-      j -= consecutive_spaces;
-      printf("hello I am being executed\n");
-      entabbedline[j] = 'l';
-      ++j;
+    if (TABSTOPS == spaces){
+      entabbedline[j] = '\t';
+      i += k;++j;
     }
     else{
-      consecutive_spaces = 0;
       entabbedline[j] = line[i];
-      ++j; ++i;
+      ++i;++j;
     }
-    printf("(%d,%d,%d)\n",i,j,consecutive_spaces);
   }
   entabbedline[j] = 0;
 }

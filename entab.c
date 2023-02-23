@@ -11,18 +11,21 @@ void entab(char line[MAXSIZE],char entabbedline[MAXSIZE],int len){
   int i,j,k; i = j = k = 0;
   int spaces = 0;
   while(i < len && j < len){
-    for(k = j;k < len && k < TABSTOPS;k++){
+
+    for(k = j;k < len && k < TABSTOPS;k++){ //find the number of spaces in the tabstops.
       if (line[k] == ' '){
         spaces++;
       }
     }
-    if (TABSTOPS == spaces){
+
+    if (TABSTOPS == spaces){ // If tabstops is equal to the number of spaces ==> it only means that they are consecutive.
       entabbedline[j] = '\t';
-      i += k;++j;
+      i += k; ++j;
     }
+
     else{
       entabbedline[j] = line[i];
-      ++i;++j;
+      ++i; ++j;
     }
   }
   entabbedline[j] = 0;

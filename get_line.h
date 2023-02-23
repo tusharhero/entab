@@ -11,6 +11,7 @@ int get_line(char line[MAXSIZE]){ // and return the length of the line.
 			i = -1;
 			break;
 		}
-	} line[i] = 0; // terminate the line.
+	}
+	line[i] = 0; // terminate the line.
 	return i;
 }

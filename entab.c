@@ -8,20 +8,22 @@
 #define TABSTOPS 8
 
 void entab(char line[MAXSIZE],char entabbedline[MAXSIZE],int len){
-	int i,j; j = i = 0;int concurrent_spaces = 0;
-	while(i < len){
+  int i,j; i = j = 0;
+  int consecutive_spaces = 0;
+  while(i < len && j < len){
     if(line[i] == ' '){
-      ++concurrent_spaces;
+      consecutive_spaces++;
+      ++i;
     }
-    if(concurrent_spaces > TABSTOPS){
-      entabbedline[j] == '\t';
+    if(consecutive_spaces >= TABSTOPS){
+      entabbedline[j] = '\t';
+      ++j;
     }
     else{
-      concurrent_spaces = 0;
       entabbedline[j] = line[i];
+      ++j; ++i;
     }
-    ++i; ++j;
-	}
+  }
   entabbedline[j] = 0;
 }
 
